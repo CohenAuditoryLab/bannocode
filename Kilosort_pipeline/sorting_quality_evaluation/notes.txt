@@ -1,0 +1,3 @@
+checkSortingQuality_v3 works with sortingQuality toolbox (https://github.com/cortex-lab/sortingQuality)
+obtainSortingMetrics requires Matt's code (https://github.com/CohenAuditoryLab/SpikesortDataPipeline)
+To read npy files, you need npy-matlab toolbox (https://github.com/kwikteam/npy-matlab)
