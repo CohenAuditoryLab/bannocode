@@ -29,7 +29,7 @@ for i=1:length(list_st)
     set(h(1),'FaceColor','red','BarWidth',1);
     set(h(2),'FaceColor','blue','BarWidth',1);
     xlabel('Electrode Contact');
-    ylabel('xCorr');
+    ylabel('xCorr [z-score]');
     xlim([0 nChannel+1]);
 end
 

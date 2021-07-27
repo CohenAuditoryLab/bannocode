@@ -3,11 +3,12 @@
 clear all
 close all
 
+ANIMAL = 'Cassius';
 % set path to the Data directory
-DATA_DIR = '/Volumes/TOSHIBA_EXT/01_STREAMING/MUA/DATA/MUA';
+DATA_DIR = fullfile('/Volumes/TOSHIBA_EXT/01_STREAMING/MUA/DATA/MUA',ANIMAL);
 SAVE_DIR = '/Volumes/TOSHIBA_EXT/01_STREAMING/MUA/Results';
 
-params.RecordingDate = '20200103';
+params.RecordingDate = '20210403';
 params.SampleRate = 24414; % original SR
 params.Baseline = 500; % baseline correction window in ms
 % Nyquist = SampleRate/2;
@@ -21,8 +22,8 @@ load(fullfile(DATA_DIR,fName));
 for HorM=1:2 % hit or miss (1 for hit, 2 for miss)
     for i=1:length(list_st)
         MUA_stdiff = meanMUA(:,:,i,HorM); % mean MUA of each semitone diff...
-%         [ACF_diff,ACF_A,ACF_B,hh] = getAutocorrelation_AB(MUA_stdiff,t,params);
-        [ACF_diff,ACF_A,ACF_B,hh] = getAutocorrelation_AB(MUA_stdiff,t,params);
+%         [ACF_diff,ACF_A,ACF_B,hh] = getAutocorrelation_AB(MUA_stdiff,t,params); % original
+        [ACF_diff,ACF_A,ACF_B,hh] = get_zACF(MUA_stdiff,t,params); % z-scored ACF
         ACF_diff_all(:,i,HorM) = ACF_diff;
         ACF_A_all(:,i,HorM) = ACF_A;
         ACF_B_all(:,i,HorM) = ACF_B;
@@ -37,8 +38,8 @@ for HorM=1:2 % hit or miss (1 for hit, 2 for miss)
             save_file_name1 = strcat(string1,'_miss');
             save_file_name2 = strcat(string2,'_miss');
         end
-        saveas(hh(1),fullfile(SAVE_DIR,params.RecordingDate,'ACF',save_file_name1),'png');
-        saveas(hh(3),fullfile(SAVE_DIR,params.RecordingDate,'ACF',save_file_name2),'png');
+        saveas(hh(1),fullfile(SAVE_DIR,params.RecordingDate,'ACF','zScore',save_file_name1),'png');
+        saveas(hh(3),fullfile(SAVE_DIR,params.RecordingDate,'ACF','zScore',save_file_name2),'png');
         
         clear ACF_diff ACF_A ACF_B
         close all
@@ -46,8 +47,9 @@ for HorM=1:2 % hit or miss (1 for hit, 2 for miss)
 end
 
 % save data
-save_file_name = strcat(params.RecordingDate,'_ACF');
-save(fullfile(SAVE_DIR,params.RecordingDate,'ACF',save_file_name), ...
+% save_file_name = strcat(params.RecordingDate,'_ACF');
+save_file_name = strcat(params.RecordingDate,'_zACF');
+save(fullfile(SAVE_DIR,params.RecordingDate,'ACF','zScore',save_file_name), ...
     'ACF_diff_all','ACF_A_all','ACF_B_all','list_st');
 
 
