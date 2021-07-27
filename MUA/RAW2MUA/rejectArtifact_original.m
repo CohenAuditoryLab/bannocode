@@ -1,4 +1,4 @@
-function [ denoiseRaw, nValidTrial ] = rejectArtifact( raw, params )
+function [ denoiseRaw ] = rejectArtifact_original( raw, params )
 %rejectArtifact Summary of this function goes here
 %   find noisy trials having voltage fructuation geater than ArtRej and
 %   replace the trial with NaN. The raw shoud be a matrix Time x Trial x
@@ -7,8 +7,6 @@ function [ denoiseRaw, nValidTrial ] = rejectArtifact( raw, params )
 ArtRej = params.ArtRej;
 n_timepoints = size(raw,1);
 n_trials = size(raw,2);
-n_channel = size(raw,3);
-nValidTrial = n_trials;
 for i=1:n_trials
     abs_raw = squeeze(abs(raw(:,i,:)));
 %     max_raw(q) = max(max(abs_raw)); % check the voltage distribution
@@ -19,9 +17,6 @@ for i=1:n_trials
     if ~isempty(noise_ch)
         for j=noise_ch
             raw(:,i,j) = NaN(n_timepoints,1); % put NaN in noisy trial
-        end
-        if length(noise_ch)==n_channel % when all channels are noisy
-            nValidTrial = nValidTrial - 1; % remove the trial
         end
     end
 end

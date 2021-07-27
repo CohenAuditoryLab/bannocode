@@ -1,11 +1,10 @@
-function [ Smooth_MeanMUA_BLC ] = getSmoothMUA( raw, params )
+function [ Smooth_MeanMUA_BLC ] = getSmoothMUA_original( raw, params )
 %smoothMUA Summary of this function goes here
 %   caclurate mean MUA from raw voltage trace
 %   the raw should be Time x Trial x Channel
 
 SampleRate = params.SampleRate;
-% Baseline = params.Baseline; % baseline correction window in ms
-Baseline = params.Baseline + 1000; % baseline correction window in ms
+Baseline = params.Baseline; % baseline correction window in ms
 Taps = params.Taps;
 points = params.Points; % for smoothing
 pointspermsec = SampleRate/1000;
@@ -23,9 +22,7 @@ MeanMUA = squeeze(nanmean(MUA,2));
 n_timepoints = size(MeanMUA,1);
 n_channels = size(MeanMUA,2);
 for c=1:n_channels
-    %subtracts mean of baseline from each column in the file
-%     MeanMUA_BLC(:,c)=(MeanMUA(:,c)-nanmean(MeanMUA(1:round(pointspermsec*Baseline),c)));
-    MeanMUA_BLC(:,c)=(MeanMUA(:,c)-nanmean(MeanMUA(round(pointspermsec*Baseline(1)):round(pointspermsec*Baseline(2)),c)));
+    MeanMUA_BLC(:,c)=(MeanMUA(:,c)-nanmean(MeanMUA(1:round(pointspermsec*Baseline),c)));%subtracts mean of baseline from each column in the file
 end
 
 %Smooth MeanMUA:
