@@ -1,0 +1,10 @@
+Use the mat file from convertRAW2MUA_v2.m to analyze the data
+The period from -1000 to -500 ms from the onset is considered as a baseline to avoid potential artifact at around -350 ms.
+Trials are separated based on semitone difference, target time, and behavioral outcome
+MUA response are z-scored and quantified for each of A and B tone presentation period (75 ms duration)
+
+convertRAW2MUA_v2.m
+read RAW file and convert it into MUA (averaged for each trial/behavioral condition)
+
+AreaUnderMUA_zScore_target.m
+quantify response at the 1st, 2nd, 3rd, T-1 and Target triplet positions
