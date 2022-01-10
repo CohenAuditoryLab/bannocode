@@ -7,15 +7,12 @@ function [ d_reshape ] = plot_index_tpos_v3( sigRESP_area )
 % reorganize matrix (channel x session x tpos)
 Rhit  = permute(sigRESP_area(:,:,1,:),[1 4 2 3]); % hit
 Rmiss  = permute(sigRESP_area(:,:,2,:),[1 4 2 3]); % miss
-% R_normalization = abs(Rhh) + abs(Reh) + abs(Rhm) + abs(Rem);
-% % R_normalization = abs( Rhh + Reh + Rhm + Rem );
 
-dBehav = abs( Rhit - Rmiss ); % modulation by behavioral outocme
+% original
+% dBehav = abs( Rhit - Rmiss ); % modulation by behavioral outocme
+dBehav = Rhit - Rmiss; % modulation by behavioral outocme
+% dBehav = (Rhit - Rmiss) ./ (abs(Rhit) + abs(Rmiss));
 
-% dBehav = ( Rhh - Rhm ) + ( Reh - Rem ) ./ R_normalization;
-% dBehav = (abs( Rhh - Rhm ) + abs( Reh - Rem )) ./ R_normalization; 
-
-% I = (dBehav - dStim) ./ (dBehav + dStim);
 
 size_reshape = [size(dBehav,1)*size(dBehav,2) size(dBehav,3)];
 d_reshape = reshape(dBehav,size_reshape);

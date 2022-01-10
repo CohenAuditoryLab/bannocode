@@ -18,10 +18,10 @@ b_sup = index_combined.belt_sup; % belt-superficial
 b_deep = index_combined.belt_deep; % belt-deep
 
 % choose triplet position
-c_sup = c_sup(:,tpos);
-c_deep = c_deep(:,tpos);
-b_sup = b_sup(:,tpos);
-b_deep = b_deep(:,tpos);
+c_sup = nanmean(c_sup(:,tpos),2);
+c_deep = nanmean(c_deep(:,tpos),2);
+b_sup = nanmean(b_sup(:,tpos),2);
+b_deep = nanmean(b_deep(:,tpos),2);
 
 dim_matrix = max(length(c_sup),length(b_sup));
 cs = nan(dim_matrix,1); cs(1:length(c_sup)) = c_sup;

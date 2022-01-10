@@ -1,4 +1,4 @@
-function [ d_reshape ] = plot_index_tpos_v2( sigRESP_layer, BorS )
+function [ d_reshape ] = plot_index_tpos_v2_log( sigRESP_layer, BorS )
 %UNTITLED2 Summary of this function goes here
 %   sigRESP_area must be a matrix of channel x easy-hard x hit-miss x session x tpos
 
@@ -19,7 +19,7 @@ dStim = abs( Rhh - Reh ) + abs( Rhm - Rem ); % modulation by stimulus frequency
 dBehav =  ( Rhh - Rhm ) + ( Reh - Rem ); % modulation by behavioral outocme
 % dBehav = ( Rhh - Rhm )./( abs(Rhh) + abs(Rhm) ) + ( Reh - Rem )./( abs(Reh) + abs(Rem) );
 
-
+dStim = log2(dStim); % log-transform
 
 % % modified on 7/28/21
 % dBehav = abs( R_hit - R_miss );

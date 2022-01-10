@@ -9,23 +9,35 @@ Rhh = squeeze(sigRESP_layer(:,1,1,:,:)); % hard-hit
 Reh = squeeze(sigRESP_layer(:,2,1,:,:)); % easy-hit
 Rhm  = squeeze(sigRESP_layer(:,1,2,:,:)); % hard-miss
 Rem = squeeze(sigRESP_layer(:,2,2,:,:)); % easy_miss
+R_normalization = abs(Rhh) + abs(Reh) + abs(Rhm) + abs(Rem);
+% % R_normalization = abs( Rhh + Reh + Rhm + Rem );
 
+% R_hit  = (Rhh + Reh) / 2;
+% R_miss = (Rhm + Rem) / 2;
+% R_hard = (Rhh + Rhm) / 2;
+% R_easy = (Reh + Rem) / 2;
 
-% stimulus modulation index
+% original
+% dBehav = abs( Rhh - Rhm ) + abs( Reh - Rem ); % modulation by behavioral outocme
 dStim = abs( Rhh - Reh ) + abs( Rhm - Rem ); % modulation by stimulus frequency
-% dStim = abs( Rhh - Reh)./( abs(Rhh) + abs(Reh) ) + abs( Rhm - Rem )./( abs(Rhm) + abs(Rem) ); 
 
-% behavioral modulation index
-dBehav =  ( Rhh - Rhm ) + ( Reh - Rem ); % modulation by behavioral outocme
-% dBehav = ( Rhh - Rhm )./( abs(Rhh) + abs(Rhm) ) + ( Reh - Rem )./( abs(Reh) + abs(Rem) );
+% modified
+dBehav =  Rhh - Rhm + Reh - Rem; % modulation by behavioral outocme
+% dStim = Rhh - Reh + Rhm - Rem; % modulation by stimulus frequency
 
-
+% dBehav = abs( Rhh - Rhm ) + abs( Reh - Rem ) ./ R_normalization; % modulation by behavioral outocme
+% dStim = abs( Rhh - Reh) + abs( Rhm - Rem ) ./ R_normalization; % modulation by stimulus frequency
+% dBehav = abs( Rhh -Rhm + Reh - Rem );
+% dStim = abs( Rhh - Reh + Rhm - Rem );
 
 % % modified on 7/28/21
 % dBehav = abs( R_hit - R_miss );
 % dStim = abs( R_hard - R_easy );
 
-
+% dBehav = ( Rhh - Rhm ) + ( Reh - Rem ) ./ R_normalization;
+% dStim  = ( Rhh - Reh ) + ( Rhm - Rem ) ./ R_normalization
+% dBehav = (abs( Rhh - Rhm ) + abs( Reh - Rem )) ./ R_normalization; 
+% dStim = (abs( Rhh - Reh ) + abs( Rhm - Rem )) ./ R_normalization;
 
 I = (dBehav - dStim) ./ (dBehav + dStim);
 

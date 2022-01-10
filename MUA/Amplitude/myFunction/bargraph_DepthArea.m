@@ -11,10 +11,10 @@ b_sup = index_combined.belt_sup; % belt-superficial
 b_deep = index_combined.belt_deep; % belt-deep
 
 % choose triplet position
-c_sup = c_sup(:,tpos);
-c_deep = c_deep(:,tpos);
-b_sup = b_sup(:,tpos);
-b_deep = b_deep(:,tpos);
+c_sup = nanmean(c_sup(:,tpos),2);
+c_deep = nanmean(c_deep(:,tpos),2);
+b_sup = nanmean(b_sup(:,tpos),2);
+b_deep = nanmean(b_deep(:,tpos),2);
 
 y = [ nanmean(c_sup(:)) nanmean(c_deep(:)); nanmean(b_sup(:)) nanmean(b_deep(:)) ];
 n = [ sum(~isnan(c_sup(:))) sum(~isnan(c_deep(:))); sum(~isnan(b_sup(:))) sum(~isnan(b_deep(:))) ];
