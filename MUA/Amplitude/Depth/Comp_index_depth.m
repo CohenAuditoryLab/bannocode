@@ -6,9 +6,9 @@ addpath('../myFunction');
 
 % DATA_PATH = '/Volumes/TOSHIBA_EXT/01_STREAMING/MUA/Results/AcrossSessions/Response/';
 DATA_PATH = 'E:\01_Research\01_STREAM_INTEGRATION&SEGREGATION\ANALYSIS\MUA\Results\AcrossSessions\Response\Depth';
-animal_name = 'Cassius'; % either 'Domo', 'Cassius', or 'Both'
+animal_name = 'Both'; % either 'Domo', 'Cassius', or 'Both'
 % layer = {'Sup','Deep'}; % either 'Deep' or 'Sup'
-auditory_area = 'Belt'; % either 'Core', 'Belt', or 'All'
+auditory_area = 'Core'; % either 'Core', 'Belt', or 'All'
 sTriplet = {'1st','2nd','3rd','Tm1','T'};
 
 % sigRESP_A = []; sigRESP_B1 = []; sigRESP_B2 = [];
@@ -103,5 +103,26 @@ save_dir = fullfile(DATA_PATH,'CompLayers',animal_name);
 save_file_name{1} = strcat('LayerComparison_BehavIndex_',animal_name,'_',auditory_area);
 save_file_name{2} = strcat('LayerComparison_StimIndex_',animal_name,'_',auditory_area);
 for i=1:2
-    saveas(H(i),fullfile(save_dir,save_file_name{i}),'png');
+%     saveas(H(i),fullfile(save_dir,save_file_name{i}),'png');
+end
+
+% save data...
+dBehav.A.sup = dBehav_As;
+dBehav.A.deep = dBehav_Ad;
+dBehav.B1.sup = dBehav_B1s;
+dBehav.B1.deep = dBehav_B1d;
+dBehav.B2.sup = dBehav_B2s;
+dBehav.B2.deep = dBehav_B2d;
+
+dStim.A.sup = dStim_As;
+dStim.A.deep = dStim_Ad;
+dStim.B1.sup = dStim_B1s;
+dStim.B1.deep = dStim_B1d;
+dStim.B2.sup = dStim_B2s;
+dStim.B2.deep = dStim_B2d;
+
+if strcmp(animal_name,'Both')
+    save_file_name = strcat('ModulationIndex_',auditory_area);
+%     save(fullfile(save_dir,save_file_name),'dBehav','dStim');
+%     save(fullfile(save_dir,'v2',strcat(save_file_name,'_v2')),'dBehav','dStim');
 end
