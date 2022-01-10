@@ -1,4 +1,8 @@
 clear all
+% take log of the SMI to make the distribution close to normal
+% the BMI distribution looked symmetric from the biginning and thus no
+% modification at all...
+% use plot_index_tpos_v2_log.m function!!
 
 % path for function calculating effect size...
 % addpath('C:\MatlabTools\measures-of-effect-size-toolbox');
@@ -41,18 +45,18 @@ rBELT_B2 = sigRESP_B2(:,:,:,j_belt,:);
 % compare behavioral signal in CORE vs BELT...
 H(1) = figure;
 subplot(2,2,1);
-dBehav_Ac = plot_index_tpos_v2(rCORE_A,'Behav'); hold on;
-dBehav_Ab = plot_index_tpos_v2(rBELT_A,'Behav');
+dBehav_Ac = plot_index_tpos_v2_log(rCORE_A,'Behav'); hold on;
+dBehav_Ab = plot_index_tpos_v2_log(rBELT_A,'Behav');
 title('A');
 
 subplot(2,2,3);
-dBehav_B1c = plot_index_tpos_v2(rCORE_B1,'Behav'); hold on;
-dBehav_B1b = plot_index_tpos_v2(rBELT_B1,'Behav');
+dBehav_B1c = plot_index_tpos_v2_log(rCORE_B1,'Behav'); hold on;
+dBehav_B1b = plot_index_tpos_v2_log(rBELT_B1,'Behav');
 title('B1');
 
 subplot(2,2,4);
-dBehav_B2c = plot_index_tpos_v2(rCORE_B2,'Behav'); hold on;
-dBehav_B2b = plot_index_tpos_v2(rBELT_B2,'Behav');
+dBehav_B2c = plot_index_tpos_v2_log(rCORE_B2,'Behav'); hold on;
+dBehav_B2b = plot_index_tpos_v2_log(rBELT_B2,'Behav');
 title('B2');
 
 legend({'Core','Belt'},'Location',[0.5 0.82 0.2 0.1]);
@@ -60,18 +64,18 @@ legend({'Core','Belt'},'Location',[0.5 0.82 0.2 0.1]);
 % compare stimulus signal in CORE vs BELT...
 H(2) = figure;
 subplot(2,2,1);
-dStim_Ac = plot_index_tpos_v2(rCORE_A,'Stim'); hold on;
-dStim_Ab = plot_index_tpos_v2(rBELT_A,'Stim');
+dStim_Ac = plot_index_tpos_v2_log(rCORE_A,'Stim'); hold on;
+dStim_Ab = plot_index_tpos_v2_log(rBELT_A,'Stim');
 title('A');
 
 subplot(2,2,3);
-dStim_B1c = plot_index_tpos_v2(rCORE_B1,'Stim'); hold on;
-dStim_B1b = plot_index_tpos_v2(rBELT_B1,'Stim');
+dStim_B1c = plot_index_tpos_v2_log(rCORE_B1,'Stim'); hold on;
+dStim_B1b = plot_index_tpos_v2_log(rBELT_B1,'Stim');
 title('B1');
 
 subplot(2,2,4);
-dStim_B2c = plot_index_tpos_v2(rCORE_B2,'Stim'); hold on;
-dStim_B2b = plot_index_tpos_v2(rBELT_B2,'Stim');
+dStim_B2c = plot_index_tpos_v2_log(rCORE_B2,'Stim'); hold on;
+dStim_B2b = plot_index_tpos_v2_log(rBELT_B2,'Stim');
 title('B2');
 
 legend({'Core','Belt'},'Location',[0.5 0.82 0.2 0.1]);

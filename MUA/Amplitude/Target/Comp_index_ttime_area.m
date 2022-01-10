@@ -6,7 +6,7 @@ addpath('../myFunction');
 
 % DATA_PATH = '/Volumes/TOSHIBA_EXT/01_STREAMING/MUA/Results/AcrossSessions/Response/';
 DATA_PATH = 'E:\01_Research\01_STREAM_INTEGRATION&SEGREGATION\ANALYSIS\MUA\Results\AcrossSessions\Response';
-animal_name = 'Domo'; % either 'Domo', 'Cassius', or 'Both'
+animal_name = 'Cassius'; % either 'Domo', 'Cassius', or 'Both'
 % layer = {'Sup','Deep'}; % either 'Deep' or 'Sup'
 % auditory_area = 'Belt'; % either 'Core', 'Belt', or 'All'
 sTriplet = 'T'; % specify the folder for the analysis...
@@ -14,7 +14,7 @@ sTriplet = 'T'; % specify the folder for the analysis...
 % sigRESP_A = []; sigRESP_B1 = []; sigRESP_B2 = [];
 fName = strcat(animal_name,'_zMUAResp_tpos_',sTriplet,'Triplet');
 folder = strcat('zScore_',sTriplet,'Triplet');
-load(fullfile(DATA_PATH,folder,fName));
+load(fullfile(DATA_PATH,folder,'TargetPosition',fName));
 % concatenate data across layer
 % channel x easy-hard x hit-miss x session x layer
 % sigRESP_A  = cat(5,sigRESP_A,sigRESP.A);
@@ -68,7 +68,8 @@ p_behav(:,3) = stats_CompLayers(dBehav_B2c,dBehav_B2b);
 % save figures...
 save_dir = fullfile(DATA_PATH,folder,'TargetPosition','CompAreas');
 save_file_name = strcat('AreaComparison_BehavIndex_',animal_name);
-saveas(H,fullfile(save_dir,save_file_name),'png');
+% saveas(H,fullfile(save_dir,save_file_name),'png');
+
 % save_file_name{2} = strcat('AreaComparison_StimIndex_',animal_name);
 % for i=1:2
 %     saveas(H(i),fullfile(save_dir,save_file_name{i}),'png');
