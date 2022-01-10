@@ -1,0 +1,25 @@
+direct comparison of SMI and BMI
+took the zScore of SMI and BMI for each area/layer and performed pair-wise comparisons.
+results affected by which data would be included when calculating z-score...
+
+zSMIBMI_LayerArea_ABB.mat
+SMI: {'1st'} {'2nd'} {'3rd'} {'T-3'} {'T-2'} {'T-1'} {'T'}
+BMI: {'1st'} {'2nd'} {'3rd'} {'T-3'} {'T-2'} {'T-1'} {'T'}
+
+zSMIBMI_LayerArea_ABB_ver2_2.mat
+SMI: {'T-1'} {'T'}
+BMI: {'T-1'} {'T'}
+
+zSMIBMI_LayerArea_ABB_ver2_3.mat
+SMI: {'T-1'}
+BMI: {'T'}
+
+zSMIBMI_LayerArea_ABB_ver2_4.mat
+SMI: {'T-1'}
+BMI: {'T-1'}
+
+zSMIBMI_LayerArea_ABB_ver2_5.mat
+SMI: {'T'}
+BMI: {'T'}
+
+=> the result from zSMIBMI_LayerArea_ABB_ver2_3.mat looks reasonable the most.

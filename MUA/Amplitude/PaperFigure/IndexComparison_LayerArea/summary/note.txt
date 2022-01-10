@@ -1,0 +1,4 @@
+separete infragranular, supragranular, and granular layers to compare SMI and BMI
+
+first run Plot_index_LayerArea_emergence_ver2.m
+ -> will generate SMIBMI_LayerArea_emergence.mat
