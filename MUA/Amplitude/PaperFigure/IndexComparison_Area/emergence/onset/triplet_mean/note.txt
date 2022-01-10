@@ -1,0 +1,10 @@
+12/8/21
+analyzed emergence timing of BMI with triplet-averaged data
+figure gerenated from Comp_index_area_emergenceOnset2_average.m doesn't show substential difference in error bar from the 
+previous version (the one from Comp_index_area_emergenceOnset2_1.m)
+
+However, statistical comparison between baseline and each of the time points becomes non-significant at T-2 triplet position in belt...
+
+12/15/21
+re-analyzed data by using the response of 225-ms triplet periods
+figure gerenated from Comp_index_area_emergenceOnset2_ABB.m and Comp_index_area_emergenceOnset2_1_ABB.m

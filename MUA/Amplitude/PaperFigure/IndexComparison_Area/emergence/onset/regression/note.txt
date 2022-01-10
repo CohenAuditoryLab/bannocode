@@ -1,0 +1,8 @@
+Perform regression analysis to examine whether the effects of area and triplet position are significant on the SMI and BMI.
+
+1. run GetTableRegression.m / GetTableRegression_emergence.m
+   -> generate IntexTable.mat and IndexTable_emergence.mat
+
+2. run RegressIndex.m / RegressIndex_emergence.m
+   -> perform linear mixed effects model analysis
+   -> save p-value in excel sheet
