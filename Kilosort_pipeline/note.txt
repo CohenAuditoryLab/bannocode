@@ -1,0 +1,10 @@
+main_kilosort25_domo.m (script for spike sorting by Kilosort2.5)
+change ops.nblocks from 5 to 0 (line 23)
+in standalone_detector.m:
+change NchanNear from 10 to 4 (line 27), NchanNearUp from 10*NchanNear to 2*NchanNear
+
+main_kilosort3_domo.m (script for spike sorting by kilosort3)
+change ops.nblocks from 5 to 0 (line 22)
+
+These are necessary for the script to run with the data from 16 channel electrode...
+
