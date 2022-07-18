@@ -9,8 +9,9 @@
 % % make sure to use Matlab built-in filtfilt function!
 % rmpath C:\Users\Cohen\OneDrive\Documents\MATLAB\fieldtrip\external\signal
 
+isSave      = 0;
+isDisplay   = 1;
 % set path
-isSave      = 1;
 DATA_DIR    = 'G:\LFP\Original';
 SAVE_DIR    = 'G:\LFP\FieldTrip';
 TOOLBOX_DIR = 'C:\Users\Cohen\OneDrive\Documents\MATLAB';
@@ -25,7 +26,7 @@ rmpath(fullfile(TOOLBOX_DIR,'fieldtrip\external\signal'));
 % define data to analyze
 Animal  = 'MrCassius'; %'MrMiyagi';
 RecDate = '190421'; %'190904';
-Epoch   = 'preCueOnset'; %'testToneOnset'; %'preCueOnset';
+Epoch   = 'moveOnset'; %'preCueOnset';
 rmNoise = 'Y'; % remove line noise 'Y' or 'N'
 
 tic;
@@ -57,11 +58,12 @@ trial_id = trialID;
 
 if isSave==1
 % save data
-sName = strcat(Animal,'-',RecDate,'_bdLFP_',Epoch);
+% sName = strcat(Animal,'-',RecDate,'_bipolarLFP_',Epoch);
+sName = strcat(Animal,'-',RecDate,'_bipolarLFP_',Epoch,'_test');
 if strcmp(rmNoise,'Y')
-    save_file_name = strcat(sName,'_ft');
+    save_file_name = sName;
 elseif strcmp(rmNoise,'N')
-    save_file_name = strcat(sName,'_ft_noFilt');
+    save_file_name = strcat(sName,'_noFilt');
 end
 clc; disp('saving data...')
 save(fullfile(SAVE_DIR,save_file_name),'data','choice','err','pretone', ...
@@ -70,3 +72,16 @@ end
 
 clc; disp('done!')
 toc;
+
+% display data (optional)
+if isDisplay==1
+    cfg = [];
+    cfg.viewmode = 'vertical';
+    ft_databrowser(cfg,data);
+    D = cat(3,data.trial{:});
+    mD = mean(D,3);
+    t = data.time{1};
+    figure;
+    subplot(2,1,1); plot(t,mD');
+    subplot(2,1,2); plot_spectrum_chronux(mD',1000);
+end

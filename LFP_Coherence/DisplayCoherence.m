@@ -1,16 +1,15 @@
 % 6/16/22 rewrite the code to reduce the redundancy of the data
-DATA_DIR = 'G:\LFP\Coherence';
+DATA_DIR = 'G:\LFP\Frequency'; %'G:\LFP\Coherence';
 
-SessionName = 'MrCassius-190421'; %'MrMiyagi-190904';
+SessionName = 'MrCassius-190421'; %'MrCassius-190421'; %'MrMiyagi-190904';
 Epoch       = 'testToneOnset';
 Condition   = 'Both'; %'Pretone';
 eID_a       = 'D2'; % electrode ID in 1st column (usually AC electrode)
 eID_b       = 'D1'; % electrode ID in 2nd column (usually PFC electrode)
 
 % load data
-% fName = strcat('coherence_',Condition);
-% load(fullfile(DATA_DIR,fName));
-fName = strcat('Coherence_',Epoch,'_',Condition);
+% fName = strcat('Coherence_',Epoch,'_',Condition);
+fName = strcat('Frequency_',Epoch,'_',Condition);
 load(fullfile(DATA_DIR,SessionName,fName));
 
 % % plot power spectrum

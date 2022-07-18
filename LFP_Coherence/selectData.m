@@ -13,7 +13,11 @@ end
 INDEX = INDEX + i;
 
 if ~isempty(iSelect.err)
-    i = params.err == iSelect.err;
+    if strcmp(iSelect.err,'valid')
+        i = ( params.err == 'w' | params.err == 'c' );
+    else
+        i = params.err == iSelect.err;
+    end
 else
     i = ones(N,1);
 end

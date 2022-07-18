@@ -1,18 +1,35 @@
-function [] = plot_spectrum(data,fs)
-%UNTITLED4 Summary of this function goes here
-%   data -- coutinuous data (samples x channel/trials)
+function [] = plot_spectrum(f,Spectrum,string,isLabel)
+%UNTITLED2 Summary of this function goes here
+%   Detailed explanation goes here
+n_ch = size(Spectrum,1); % number of channel
+c = parula(n_ch); % specify color map to use
+% c = jet(n_ch); % specify color map to use
 
-% add path for chronux toolbox
-TOOLBOX_DIR = 'C:\Users\Cohen\OneDrive\Documents\MATLAB';
-addpath(genpath(fullfile(TOOLBOX_DIR,'chronux_2_12','chronux_2_12')));
+for i=1:n_ch
+    plot(f,Spectrum(i,:),'Color',c(i,:)); hold on;
+end
+xlabel('Frequency [Hz]'); ylabel('Power');
 
-params.tapers = [3 5];
-params.Fs    = fs;
-params.fpass = [0 250];
+if strcmp(isLabel,'y')||strcmp(isLabel,'Y')||isLabel==1
+if n_ch==14 % 16-ch electrode
+    ch_label = {'ch02','ch03','ch04','ch05','ch06','ch07','ch08','ch09','ch10','ch11','ch12','ch13','ch14','ch15'};
+elseif n_ch==20 % 24-ch electrode
+    ch_label = {'ch03','ch04','ch05','ch06','ch07','ch08','ch09','ch10','ch11','ch12','ch13','ch14','ch15','ch16','ch17','ch18','ch19','ch20','ch21','ch22'};
+end
+legend(ch_label);
+end
 
-[S,f] = mtspectrumc(data,params);
+s = inputname(2);
+if strcmp(s(end),'c')
+    s_title = [string ' correct'];
+elseif strcmp(s(end),'w')
+    s_title = [string ' wrong'];
+elseif strcmp(s(end),'d')
+    s_title = [string ' difference'];
+end
+title(s_title);
 
-plot_vector(S,f);
+box off;
 
 end
 

@@ -1,16 +1,18 @@
 % 6/21/22 rewrite the code to reduce the redundancy of the data
-DATA_DIR = 'G:\LFP\Coherence'; % path for coherence file
+% DATA_DIR = 'G:\LFP\Coherence'; % path for coherence file
+DATA_DIR = 'G:\LFP\TimeFrequency'; % path for coherence file
 
-SessionName = 'MrCassius-190421'; %'MrMiyagi-190904';
-Epoch       = 'preCueOnset';
+SessionName = 'MrCassius-190421_pad'; %'MrCassius-190421'; %'MrMiyagi-190904';
+Epoch       = 'preCueOnset'; %'moveOnset';
 Condition   = 'Both';
-eID_a       = 'D2'; % electrode ID in 1st column (usually AC electrode)
-eID_b       = 'D1'; % electrode ID in 2nd column (usually PFC electrode)
+eID_ac      = 'D2'; % electrode ID in 1st column (usually AC electrode)
+eID_pfc     = 'D1'; % electrode ID in 2nd column (usually PFC electrode)
 
 % load data
 % fName = strcat('coherence_',Condition);
 % load(fullfile(DATA_DIR,fName));
-fName = strcat('Coherence_',Epoch,'_',Condition);
+% fName = strcat('Coherence_',Epoch,'_',Condition);
+fName = strcat('TimeFrequency_',Epoch,'_',Condition,'_v2');
 load(fullfile(DATA_DIR,SessionName,fName));
 
 % % plot power spectrum
@@ -23,42 +25,73 @@ load(fullfile(DATA_DIR,SessionName,fName));
 % plot(f,mS_elec_w);
 
 % choose electrode combination
-C_c = reshape_coherogram(tcoh_c,eID_a,eID_b); % correct trial
-C_w = reshape_coherogram(tcoh_w,eID_a,eID_b); % wrong trial
+C_c = reshape_coherogram(tcoh_c,eID_ac,eID_pfc); % correct trial
+C_w = reshape_coherogram(tcoh_w,eID_ac,eID_pfc); % wrong trial
 f   = tcoh_c.freq;
 t   = tcoh_c.time;
 
-% % % average across 1st electrode (eID_a) % % %
+% % % average across 1st electrode (eID_ac) % % %
 % ch = 13:14; % select PFC channel for display
-ch = 1:20; % select PFC channel for display
 aveC1_c = squeeze(mean(C_c.cohspctrm_mat,1)); 
 aveC1_w = squeeze(mean(C_w.cohspctrm_mat,1));
 aveC1_d = aveC1_c - aveC1_w; % difference (correct - wrong)
-string_a = strcat('PFC_D_', eID_b(end), ' -- AC_D_', eID_a(end));
+% string_a = strcat('PFC_D_', eID_pfc(end), ' -- AC_D_', eID_ac(end));
+string_a = strcat('PFC_D_', eID_pfc(end));
+nCh = size(aveC1_c,1);
 % display coherogram
-figure('Position',[100 100 1200 700]);
-subplot(2,3,1);
-plot_coherogram(t,f,aveC1_c,string_a,ch);
-subplot(2,3,2);
-plot_coherogram(t,f,aveC1_w,string_a,ch);
-subplot(2,3,3);
-plot_coherogram(t,f,aveC1_d,string_a,ch);
+figure('Position',[50 50 1200 700]);
+if nCh==20
+    for i=1:nCh
+        subplot(4,5,i);
+        plot_coherogram(t,f,aveC1_c,string_a,i+2);
+    end
+elseif nCh==14
+    for i=1:nCh
+        subplot(3,5,i);
+        plot_coherogram(t,f,aveC1_c,string_a,i+1);
+    end
+end
 
-% % % average across 2nd electrode (eID_b) % % %
+
+% % % average across 2nd electrode (eID_pfc) % % %
 % ch = 8:11; % select AC channel for display
-ch = 1:20; % select AC channel for display
+
 aveC2_c = squeeze(mean(C_c.cohspctrm_mat,2));
 aveC2_w = squeeze(mean(C_w.cohspctrm_mat,2));
 aveC2_d = aveC2_c - aveC2_w; % difference(correct - wrong)
-string_b = strcat('AC_D_', eID_a(end), ' -- PFC_D_', eID_b(end));
+string_b = strcat('AC_D_', eID_ac(end));
+nCh = size(aveC2_c,1);
 % display coherogram
-% figure('Position',[100 100 1200 700]);
+figure('Position',[75 75 1200 700]);
+if nCh==20
+    for i=1:nCh
+        subplot(4,5,i);
+        plot_coherogram(t,f,aveC2_c,string_b,i+2);
+    end
+elseif nCh==14
+    for i=1:nCh
+        subplot(3,5);
+        plot_coherogram(t,f,aveC2_c,string_b,i+1);
+    end
+end
+
+figure('Position',[100 100 1200 700]);
+% % average across channels
+ch_a = 7:13; % select PFC channel for display
+subplot(2,3,1);
+plot_coherogram(t,f,aveC1_c,string_a,ch_a);
+subplot(2,3,2);
+plot_coherogram(t,f,aveC1_w,string_a,ch_a);
+subplot(2,3,3);
+plot_coherogram(t,f,aveC1_d,string_a,ch_a);
+
+ch_b = 3:6; % select AC channel for display
 subplot(2,3,4);
-plot_coherogram(t,f,aveC2_c,string_b,ch);
+plot_coherogram(t,f,aveC2_c,string_b,ch_b);
 subplot(2,3,5);
-plot_coherogram(t,f,aveC2_w,string_b,ch);
+plot_coherogram(t,f,aveC2_w,string_b,ch_b);
 subplot(2,3,6);
-plot_coherogram(t,f,aveC2_d,string_b,ch);
+plot_coherogram(t,f,aveC2_d,string_b,ch_b);
 
 % % plot coherence between areas...
 % nAveCh = 20; % number of averaging channel

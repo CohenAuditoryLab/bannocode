@@ -1,15 +1,14 @@
-DATA_DIR = 'G:\LFP\Coherence';
+DATA_DIR = 'G:\LFP\Frequency'; %'G:\LFP\Coherence';
 
-SessionName = 'MrCassius-190421'; %'MrMiyagi-190904';
-Epoch       = 'preCueOnset';
+SessionName = 'MrCassius-190421'; %'MrCassius-190429'; %'MrMiyagi-190904';
+Epoch       = 'testToneOnset'; %'preCueOnset';
 Condition   = 'Both'; %'Pretone';
 eID_AC      = 'D2'; % electrode ID in 1st column (usually AC electrode)
 eID_PFC     = 'D1'; % electrode ID in 2nd column (usually PFC electrode)
 
 % load data
-% fName = strcat('coherence_',Condition);
-% load(fullfile(DATA_DIR,fName));
-fName = strcat('Coherence_',Epoch,'_',Condition);
+% fName = strcat('Coherence_',Epoch,'_',Condition);
+fName = strcat('Frequency_',Epoch,'_',Condition);
 load(fullfile(DATA_DIR,SessionName,fName));
 
 label = granger_c.label;
@@ -36,15 +35,15 @@ G_w.cfg.channel = label_select;
 % quick view of Granger causality of all combination...
 cfg = [];
 cfg.parameter = 'grangerspctrm';
-cfg.xlim = [0 55];
+cfg.xlim = [0 100]; %[0 55];
 % cfg.xlim = [65 120];
-cfg.ylim = [0 0.5];
-% cfg.channel = {'*D1*','*D3*'};
+cfg.zlim = [0 0.3];
+cfg.channel = {'*D2*','*D2*'}; % choose electrode to show...
 figure;
 ft_connectivityplot(cfg,G_c);
 
-ch_AC  = 5;
-ch_PFC = 20;
+ch_AC  = 7;
+ch_PFC = 18;
 gg_c = G_c.grangerspctrm;
 gg_w = G_w.grangerspctrm;
 f = G_c.freq; % frequency
