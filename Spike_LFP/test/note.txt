@@ -1,1 +1,2 @@
 test spike-field coherence with Domo's data
+use Chronux Toolbox to examine spike-field coherence in Auditory Cortex (spike and LFP data obtained in the same electrode channel)
