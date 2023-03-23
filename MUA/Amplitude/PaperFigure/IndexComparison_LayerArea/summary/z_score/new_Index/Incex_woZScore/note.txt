@@ -1,0 +1,20 @@
+1/31/22 re-define index FMI, SMI and BMI
+
+Try to visualize FMI SMI and BMI without taking z-score
+first run Get_Index_woZScore.m to obtain data matrix
+
+FMISMIBMI_LayerArea_ABB_ver3.mat
+FMI: {'T-1'}
+SMI: {'T-1'} 
+BMI: {'T'}
+
+FMISMIBMI_LayerArea_ABB_ver3_2.mat
+FMI: {'1st'}
+SMI: {'T-1'}
+BMI: {'T'}
+
+FMISMIBMI_LayerArea_ABB_ver3_3.mat
+FMI: {'2nd'}
+SMI: {'2nd'}
+BMI: {'T'}
+
