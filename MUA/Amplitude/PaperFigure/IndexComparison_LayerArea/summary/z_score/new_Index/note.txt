@@ -1,0 +1,23 @@
+1/31/22 re-define index FMI, SMI and BMI
+
+direct comparison of SMI and BMI
+took the zScore of SMI and BMI for each area/layer and performed pair-wise comparisons.
+results affected by which data would be included when calculating z-score...
+
+
+
+zFMISMIBMI_LayerArea_ABB_ver3.mat
+FMI: {'T-1'}
+SMI: {'T-1'} 
+BMI: {'T'}
+
+zFMISMIBMI_LayerArea_ABB_ver3_2.mat
+FMI: {'1st'}
+SMI: {'T-1'}
+BMI: {'T'}
+
+zFMISMIBMI_LayerArea_ABB_ver3_3.mat
+FMI: {'2nd'}
+SMI: {'2nd'}
+BMI: {'T'}
+
