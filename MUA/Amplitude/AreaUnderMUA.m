@@ -5,10 +5,10 @@ close all
 
 ANIMAL = 'Domo';
 % set path to the Data directory
-DATA_DIR = fullfile('/Volumes/TOSHIBA_EXT/01_STREAMING/MUA/DATA/MUA',ANIMAL);
-SAVE_DIR = '/Volumes/TOSHIBA_EXT/01_STREAMING/MUA/Results';
+DATA_DIR = fullfile('E:\01_Research\01_STREAM_INTEGRATION&SEGREGATION\DATA',ANIMAL,'MUA');
+SAVE_DIR = 'E:\01_Research\01_STREAM_INTEGRATION&SEGREGATION\ANALYSIS\MUA\Results';
 
-params.RecordingDate = '20180807';
+params.RecordingDate = '20180727';
 params.SampleRate = 24414; % original SR
 % params.Baseline = 500; % baseline correction window in ms
 % Nyquist = SampleRate/2;

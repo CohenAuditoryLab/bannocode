@@ -58,7 +58,7 @@ aIndex = area_index;
 j = 1:length(aIndex);
 if strcmp(auditory_area,'Core')
     j = j(aIndex==1);
-elseif strcmp(auditory_area,'Belt');
+elseif strcmp(auditory_area,'Belt')
     j = j(aIndex==0);
 end
 

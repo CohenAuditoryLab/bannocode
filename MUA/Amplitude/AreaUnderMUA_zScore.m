@@ -5,8 +5,8 @@ close all
 
 ANIMAL = 'Domo';
 % set path to the Data directory
-DATA_DIR = fullfile('/Volumes/TOSHIBA_EXT/01_STREAMING/MUA/DATA/MUA',ANIMAL);
-SAVE_DIR = '/Volumes/TOSHIBA_EXT/01_STREAMING/MUA/Results';
+DATA_DIR = fullfile('E:\01_Research\01_STREAM_INTEGRATION&SEGREGATION\DATA',ANIMAL,'MUA','BL500ms');
+SAVE_DIR = 'E:\01_Research\01_STREAM_INTEGRATION&SEGREGATION\ANALYSIS\MUA\Results';
 th = 1.96; % 95% threshold of z-score
 % th = 2.58; % 99% threshold of z-score
 
@@ -27,7 +27,8 @@ for HorM=1:2 % hit or miss (1 for hit, 2 for miss)
         MUA_stdiff = meanMUA(:,:,i,HorM); % mean MUA of each semitone diff...
 %         [resp,spont,stim] = get_MUAResponse(t,MUA_stdiff,params.AnalysisWindow);  % original
 %         [abb,trp] = get_MUAResponse_AB(t,MUA_stdiff);
-        abb = get_zMUAResponse_AB(t,MUA_stdiff);
+        abb = get_zMUAResponse_AB(t,MUA_stdiff); % get_zMUAResponse_AB has been modified 6/20/21
+        abb = abb(:,1:6,:); % get the first 6 triplets...
         zABB(:,:,:,i,HorM)  = abb; % ABB x triplet pos x ch x stdiff x behav
 %         triplet(:,:,i,HorM) = trp;
     end
@@ -76,7 +77,7 @@ for i=1:length(list_st)
     set(H,'XLim',[0 nChannel+1],'YLim',[min(y_min) max(y_max)]);
     % save figure
     fig_name = strcat(params.RecordingDate,'_zTripletResp_',num2str(list_st(i)),'stdiff');
-    saveas(gcf,fullfile(SAVE_DIR,params.RecordingDate,'RESP','zScore',fig_name),'png');
+    saveas(gcf,fullfile(SAVE_DIR,params.RecordingDate,'RESP_BL500',fig_name),'png');
     clear y_min y_max
 end
 % reorganize data for saving...
@@ -87,7 +88,7 @@ zMUA_B2 = zABB(:,:,:,:,3);
 
 % save data
 save_file_name = strcat(params.RecordingDate,'_zMUAtriplet');
-save(fullfile(SAVE_DIR,params.RecordingDate,'RESP','zScore',save_file_name), ...
+save(fullfile(SAVE_DIR,params.RecordingDate,'RESP_BL500',save_file_name), ...
     'zMUA_A','zMUA_B1','zMUA_B2','list_st');
 
 close all
