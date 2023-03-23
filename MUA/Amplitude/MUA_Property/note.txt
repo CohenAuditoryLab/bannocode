@@ -1,0 +1,7 @@
+8/4/22 modify MUA_property_ver2.m
+ - add laminar boundary
+ - 8/25 re-run the code to get data in t+1 triplet position
+
+8/8/22 modify MUA_property_ABB_ver3.m
+ - add laminar boundary
+ - 8/25 re-run the code to get data in t+1 triplet position
