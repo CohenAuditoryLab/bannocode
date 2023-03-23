@@ -35,7 +35,8 @@ if strcmp(BorS,'Behav')
     y_label = 'BMI';
 elseif strcmp(BorS,'Stim')
     d_reshape = reshape(dStim,size_reshape);
-    y_label = 'log(SMI)';
+%     y_label = 'log(SMI)';
+    y_label = 'log(FSI)';
 end
 
 
@@ -54,7 +55,7 @@ h = errorbar(x'+jitter,y',err2','LineWidth',2.0);
 % set(h(2),'Marker','o','Color','r','LineWidth',1.5); % hit vs miss
 % set(h(3),'Marker','o','Color','r','LineWidth',1.5);
 % set(h(4),'Marker','o','Color','b','LineStyle','--','LineWidth',1.5);
-set(gca,'xLim',[0.5 length(x)+0.5],'xTickLabel',{'1st','2nd','3rd','Tm1','T'});
+set(gca,'xLim',[0.5 length(x)+0.5],'xTickLabel',{'1st','2nd','3rd','T-1','T'});
 xlabel('Triplet Position');
 ylabel(y_label);
 box off;
