@@ -8,3 +8,9 @@ However, statistical comparison between baseline and each of the time points bec
 12/15/21
 re-analyzed data by using the response of 225-ms triplet periods
 figure gerenated from Comp_index_area_emergenceOnset2_ABB.m and Comp_index_area_emergenceOnset2_1_ABB.m
+
+
+5/16/22
+Comp_index_tpos_CoreBelt_emergenceOnset2_ABB.m
+re-analyzed data by separating core and belt
+(code modified from Comp_index_area_emergenceOnset2_ABB.m)
