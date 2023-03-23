@@ -37,14 +37,15 @@ if strcmp(isPaperSize,'y')
 end
 axis tight
 
-y_lim = get(gca,'YLim');
-y_barpos = floor(y_lim(1));
-plot([0 100],[y_barpos y_barpos],'k','LineWidth',3);
+% % plot stimulus period
+% y_lim = get(gca,'YLim');
+% y_barpos = floor(y_lim(1));
+% plot([0 100],[y_barpos y_barpos],'k','LineWidth',3);
 
 xlabel('Time [ms]'), ylabel ('Channel')
 % title(['RectMUA ',Stimulus,' Inter-Waveform Spacing= ',num2str(spacingRectMUA)])
 title('MUA');
-set(gca,'XLim',[-100 400]);
+set(gca,'XTick',-100:100:400,'XLim',[-100 400]);
 hold off;
 
 

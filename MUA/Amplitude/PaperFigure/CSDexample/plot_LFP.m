@@ -1,4 +1,4 @@
-function [] = plot_CSD(time,MeanCSD,isPaperSize)
+function [] = plot_LFP(time,MeanAEP,isPaperSize)
 %ExtractTDTDataAvgOnly_Penn
 
 %This program extracts AEP, MUA, and CSD Data from the OpenEx data tank and
@@ -13,26 +13,27 @@ function [] = plot_CSD(time,MeanCSD,isPaperSize)
 % 
 % fName = strcat(RecDate,'_CSDMUA');
 % load(fName);
-dummy_CSD = NaN(size(MeanCSD,1),1);
-MeanCSD = [dummy_CSD MeanCSD dummy_CSD]; % add NaN
-n_ch = size(MeanCSD,2);
+% dummy_AEP = NaN(size(MeanAEP,1),1);
+% MeanAEP = [dummy_AEP MeanAEP dummy_AEP]; % add NaN
+n_ch = size(MeanAEP,2);
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%Now We Plot the Data:
 % figure; % CSD
-spacingCSD=75;%spacing in microvolts
-y_max = n_ch * spacingCSD;
+% spacingAEP=75;%spacing in microvolts
+spacingAEP=120;%spacing in microvolts
+y_max = n_ch * spacingAEP;
 for n=1:n_ch % data channels
-   z=MeanCSD(:,n);
-   points=size(MeanCSD,1);
+   z=MeanAEP(:,n);
+   points=size(MeanAEP,1);
    grid off
    axis on
 
-   plot(time,z-n*spacingCSD,'k','LineWidth',1.5);  %plots CSD
+   plot(time,z-n*spacingAEP,'k','LineWidth',1.5);  %plots CSD
    hold on
-   baseline=(zeros(1,points)-n*spacingCSD);
+   baseline=(zeros(1,points)-n*spacingAEP);
    plot(time,baseline,'k','LineWidth',.5); %plots baseline
    
-   y_pos(n) = -n*spacingCSD;
+   y_pos(n) = -n*spacingAEP;
 end
 set(gca,'YTick',fliplr(y_pos),'YTickLabel',n_ch:-1:1);
 
@@ -48,14 +49,14 @@ if strcmp(isPaperSize,'y')
 end
 axis tight
 
-% % plot stimulus period
-% y_lim = get(gca,'YLim');
-% y_barpos = floor(y_lim(1)) - 12;
-% plot([0 100],[y_barpos y_barpos],'k','LineWidth',3);
+% plot stimulus period
+y_lim = get(gca,'YLim');
+y_barpos = floor(y_lim(1)) - 12;
+plot([0 100],[y_barpos y_barpos],'k','LineWidth',3);
 
 xlabel('Time [ms]'), ylabel ('Channel');
 % title(['CSD ',Stimulus,' Inter-Waveform Spacing= ',num2str(spacingCSD)])
-title('CSD');
+title('LFP');
 set(gca,'XTick',-100:100:400,'XLim',[-100 400]);
 hold off;
 
