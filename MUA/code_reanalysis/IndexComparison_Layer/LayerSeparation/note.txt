@@ -1,0 +1,5 @@
+11/16/22 additional analysis for splitting SMI and BMI into layers
+
+Data analyzed by: Plot_BMI_Layer_AP.m and Plot_SMI_Layer_AP.m
+ - set tpos = {'1st','2nd','3rd','T-1','T'}; for ver1
+ - set tpos = {'1st','2nd','3rd','T-1','T','T+1'}; for ver2
