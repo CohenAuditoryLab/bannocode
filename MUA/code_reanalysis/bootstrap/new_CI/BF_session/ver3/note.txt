@@ -1,0 +1,4 @@
+1/4/23 re-analyze data
+ - separete high-BF sessions and and low-BF sessions and recalculate index
+ - not taking absolute value at all (either in CI or FSI)
+ - CI and FSI become greater than zero when responses are larger in small dF trials

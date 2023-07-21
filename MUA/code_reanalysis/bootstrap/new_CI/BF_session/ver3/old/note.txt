@@ -1,0 +1,4 @@
+version 1 of index analysis without taking absolute values
+
+CI and FSI become grater than zero when responses are larger in large dF trial than small dF trial
+(opposite to the fixed version)
