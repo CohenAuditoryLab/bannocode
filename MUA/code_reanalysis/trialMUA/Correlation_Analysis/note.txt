@@ -1,0 +1,3 @@
+6/29/23 re-analized the data to examine modulation by behavioral outcome is affected by taks performance
+ - correlation between delta-d' and delta streaming probability
+ - correlation between delta-d' and behavioral modulation index (auROC hit vs miss)
