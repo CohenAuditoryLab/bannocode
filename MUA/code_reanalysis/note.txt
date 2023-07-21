@@ -1,0 +1,7 @@
+8/3/22 re-analize the MUA data
+
+re-assign area and layer boundary
+ - RecordingDate_Both.mat
+ - RecordingDate_Cassius.mat
+ - RecordingDate_Domo.mat
+These files were copied from C:\Users\Taku\Documents\01_Research\01_STREAM_INTEGRATION&SEGREGATION\ANALYSIS\MUA\code
